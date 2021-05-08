@@ -1,0 +1,39 @@
+#include<iostream>
+#include<set>
+#include<limits.h>
+using namespace std;
+
+/*
+For the set of intervals such as:
+[0,10] , [21,30] , [45-60] , [75-90]
+give me the interval in which the value 58 lies
+*/
+int main()
+{
+    set < pair<int,int> > s;
+    s.insert({1,10});
+    s.insert({45,60});
+    s.insert({21,30});
+    s.insert({75,90});
+    for(auto i=s.begin();i!=s.end();i++)
+    {
+        cout<<i->first<<" "<<i->second; //Set sort values in increasing order
+        cout<<endl;
+    }
+    int value;
+    cout<<"Enter the value\n";
+    cin>>value;
+    auto iter2=s.upper_bound({value,INT_MAX});
+    if(iter2==s.begin())
+    {
+        cout<<"Sorry, The value is not present in pair of set\n";
+        return 0;
+    }
+    iter2--;
+    pair<int,int> current = *iter2;
+    if(current.first<=value&&value<=current.second)
+    cout<<"The "<<value<<" is present at ["<<current.first<<","<<current.second<<"]";
+    else
+    cout<<"The "<<value<<"is not present in pair of set\n";
+}
+ 
