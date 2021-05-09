@@ -1,0 +1,51 @@
+#include<iostream>
+#include<stack>
+#include<vector>
+#include<algorithm>
+#include<limits.h>
+#include<set>
+using namespace std;
+int main()
+{
+    int n;
+    cout<<"Enter the no of pairs you would like to insert\n";
+    cin>>n;
+    vector<pair<int,int>> v;
+    int x,y;
+    for(int i=0;i<n;i++)
+    {
+        cin>>x>>y;
+        v.push_back({x,y});
+    }
+    sort(v.begin(),v.end());
+    stack<pair<int,int>> s;
+    s.push({v[0].first,v[0].second});
+    for(int i=1;i<n;i++)
+    {
+        int start1=s.top().first;
+        int end1=s.top().second;
+        int start2=v[i].first;
+        int end2=v[i].second;
+        if(end1<start2)
+        {
+         s.push({start2,end2});
+        }
+        else
+        {
+         s.pop();
+         end1=max(end1,end2); 
+         s.push({start1,end1});
+        }
+    }
+    set<pair<int,int>> result;
+    while(!s.empty())
+    {
+       result.insert({s.top().first,s.top().second});
+       s.pop();
+    }
+    for(auto i=result.begin();i!=result.end();i++)
+    {
+        cout<<i->first<<" "<<i->second;
+        cout<<endl;
+    }
+}
