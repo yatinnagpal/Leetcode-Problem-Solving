@@ -1,132 +1,28 @@
-//Simple Approach
-
-
-#include <iostream>
-
-using namespace std;
-
-class node
-{
-    public:
-    int data;
-    node* next;
-    node(int val)
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+    ListNode*temp1=l1;
+    ListNode*temp2=l2;
+    ListNode* ans=new ListNode(0);
+    ListNode*temp3=ans;
+    int carry=0;
+    while(temp1!=NULL || temp2!=NULL)
     {
-        data=val;
-        next=NULL;
+        int x= (temp1!=NULL)?temp1->val:0;
+        int y= (temp2!=NULL)?temp2->val:0;
+        int sum=carry+x+y;
+        carry=sum/10;
+        temp3->next=new ListNode(sum%10);
+        temp3=temp3->next;
+        if(temp1!=NULL)
+            temp1=temp1->next;
+        if(temp2!=NULL)
+            temp2=temp2->next;   
+    }
+        if(carry>0)
+        {
+            temp3->next=new ListNode(carry);
+        }
+        return temp3;
     }
 };
-int insert(node* &head,int data)
-{
-    node* n =new node(data);
-    if(head==NULL)
-     {
-      head=n;
-      return 0;
-     }
-     if(head->next==NULL)
-     {
-         head->next=n;
-         return 0;
-     }
-     node* temp = head;
-     while(temp->next!=NULL)
-     {
-         temp=temp->next;
-     }
-     temp->next=n;
-} 
-
-node* ReverseNode(node* &head)
-{
-    node* next;
-    node* prev=NULL;
-    node* curr=head;
-    while(curr!=NULL)
-    {
-        next=curr->next;
-        curr->next=prev;
-        prev=curr;
-        curr=next;
-    }
-    return prev;
-}
-
-int DeleteAtHead(node* &head,int val)
-{
-     node* temp=head;
-     node* todelete;
-    if(temp==NULL)
-    {
-        cout<<"List Already Empty\n";
-        return 0;
-    }
-    else if(temp->data==val)
-    {
-        todelete=head;
-        head=head->next;
-        delete todelete;
-        return 0;
-    //    delete temp;
-    }
-    node* n=new node(val);
-    while(temp->next->data!=val)
-    {
-        temp=temp->next;
-    }
-    if(temp->next->next==NULL)
-        temp->next=NULL;
-    else if(temp->next->data==val)
-    temp->next=temp->next->next;
-}
-
-void display(node* head)
-{
-    node* temp=head;
-    while(temp!=NULL)
-    {
-        cout<<temp->data<<" ";
-        temp=temp->next;
-    }
-}
-void sum(node* rev1,node* rev2)
-{
-    node*temp1=rev1;
-    node*temp2=rev2;
-    int result=0;
-    while(rev1!=NULL&&rev2!=NULL)
-    {
-        result+=rev1->data + rev2->data;
-        rev1=rev1->next;
-        rev2=rev2->next;
-        cout<<"\nSum of list 1 and list 2 is "<<result<<endl;
-        result=0;
-    }
-}
-int main()
-{
-    node* head1=NULL;
-    node* head2=NULL;
-    insert(head1,4);
-    insert(head1,6);
-    insert(head1,8);
-    insert(head1,10);
-    insert(head1,12);
-    DeleteAtHead(head1,6);
-    cout<<"First List :\n";
-    display(head1);
-    insert(head2,3);
-    insert(head2,7);
-    insert(head2,1);
-    insert(head2,5);
-    cout<<"\nSecond List :\n";
-    display(head2);
-    node* rev1=ReverseNode(head1);
-    cout<<"\nAfter Reversing, first list becomes\n";
-    display(rev1);
-    node* rev2=ReverseNode(head2);
-    cout<<"\nAfter Reversing, second list becomes\n";
-    display(rev2);
-    sum(rev1,rev2);
-    return 0;
-}
