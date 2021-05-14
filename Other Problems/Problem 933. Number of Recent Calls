@@ -1,0 +1,14 @@
+class RecentCounter {
+public:
+    deque<int> req;
+    RecentCounter() {
+        req={};
+    }
+    
+    int ping(int t) {
+        req.push_back(t);
+        while(req.front()<t-3000)
+            req.pop_front();
+        return req.size();
+    }
+};
