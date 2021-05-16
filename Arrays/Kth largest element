@@ -1,0 +1,8 @@
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        int n=sizeof(nums)/sizeof(nums[0]);
+        sort(begin(nums),end(nums), greater<>());
+        return nums[k-1];
+    }
+};
