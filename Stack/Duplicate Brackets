@@ -1,0 +1,43 @@
+#include <iostream>
+#include<stack>
+#include<string>
+using namespace std;
+
+bool duplicate(string s)
+{
+stack<char> st;
+bool copy=false;
+int n=s.length();
+int a=0;
+for(int i=0;i<n;i++)
+ {
+	if(s[i]!=')')
+	{
+	    st.push(s[i]);
+	}
+	else
+	{
+	    if(st.top()=='(')
+	    {
+	        copy=true;
+	        return copy;
+	    }
+	    while(!st.empty()&&st.top()!='(')
+	    {
+	        st.pop();
+	    }
+	    if(st.top()=='(')
+	    {
+	        st.pop();
+	        copy=false;
+	    }
+	}
+ }
+ return copy;
+}
+int main() 
+{
+	string s="((a+b)+(c+d))";
+	cout<<duplicate(s);
+	
+}
