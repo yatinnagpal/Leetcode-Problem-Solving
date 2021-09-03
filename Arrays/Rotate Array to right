@@ -1,0 +1,21 @@
+class Solution {
+public:
+    void reverse_elements(vector<int>&nums,int start,int end)
+    {
+        while(start<end)
+        {
+         swap(nums[start],nums[end]);
+         start++;
+         end--;
+        }
+    }
+    void rotate(vector<int>& nums, int k) {
+        int n=nums.size();
+        k=k%n;
+        if(n<0&&k<n-1)
+            return;
+        reverse(nums.begin(),nums.end());
+        reverse_elements(nums,0,k-1);
+        reverse_elements(nums,k,n-1);
+    }
+};
