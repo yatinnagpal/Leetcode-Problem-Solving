@@ -1,0 +1,30 @@
+class Solution
+{
+    public:
+    //Function to reverse words in a given string.
+    string reverseWords(string S) 
+    { 
+        int n=S.length();
+        vector<string> word;
+        string s1="";
+        for(int i=0;i<n;i++)
+        {
+            if(S[i]!='.')
+            s1+=S[i];
+            else
+            {
+             word.push_back(s1);
+             s1="";
+            }
+        }
+        word.push_back(s1);
+       reverse(word.begin(),word.end());
+       int n1=word.size();
+       for(int i=0;i<n1;i++)
+       {
+        if(i!=n1-1)
+        cout<<word[i]<<".";
+        if(i==n1-1)
+        cout<<word[i];
+       }
+    }
