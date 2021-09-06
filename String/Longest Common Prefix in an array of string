@@ -1,0 +1,23 @@
+class Solution{
+  public:
+    
+    string longestCommonPrefix (string arr[], int N)
+    {
+        // your code here
+        string S="-1";
+        if(N==0)
+        return "";
+        if(N==1)
+        return arr[0];
+        sort(arr,arr+N);
+        int en=min(arr[0].size(),arr[N-1].size());
+        string first=arr[0],last=arr[N-1];
+        int i=0;
+        while(i<en && first[i]==last[i] )
+        i++;
+        if(i==0)
+        return S;
+        S=first.substr(0,i);
+        return S;
+    }
+};
