@@ -1,0 +1,21 @@
+class Solution {
+public:
+    string countAndSay(int n) {
+        if(n==1)
+            return "1";
+        int count=0;
+        string res="";
+        string s=countAndSay(n-1);
+        for(int i=0;i<s.length();i++)
+        {
+            count++;
+            if(i==s.length()-1||s[i]!=s[i+1])
+            {
+                res+=to_string(count);
+                res+=s.at(i);
+                count=0;
+            }
+        }
+        return res;
+    }
+};
