@@ -1,7 +1,14 @@
+ bool cmp(const vector<string> &a,const vector<string> &b) 
+        { 
+        	return a.size()>b.size(); 
+         } 
 class Solution {
+    
 public:
+    
     vector<vector<string>> groupAnagrams(vector<string>& strs) {
         vector<vector<string>> ans;
+       
         unordered_map<string,vector<string>> umap;
         for(auto x:strs)
         {
@@ -15,6 +22,7 @@ public:
             sort(temp.begin(),temp.end());
             ans.push_back(temp);
         }
+        sort(ans.begin(),ans.end(),cmp);
         return ans;
     }
 };
