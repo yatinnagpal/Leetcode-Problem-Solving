@@ -19,3 +19,20 @@ public:
         return res;
     }
 };
+
+
+
+
+///SQL QUERIES
+
+Select s.Name from salesperson s INNER JOIN orderss o On s.ID=o.salesperson_id
+WHERE o.amount>=1400;
+
+select min(order_date) as first_order, max(order_date) as last_order
+from orderss INNER JOIN customer on orderss.cust_id=customer.ID
+where customer.Name='Yatin Nagpal';
+
+SELECT s.Name from salesperson s inner join orderss o on s.ID=o.salesperson_id
+group by s.Name
+HAVING count(o.salesperson_id)>=2;
+
