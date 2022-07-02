@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int minOperations(vector<int>& nums, int x) {
+     int n=nums.size();
+     int total=0;
+     for(int i=0;i<n;i++)
+        total+=nums[i];
+     if(total<x)
+         return -1;
+     int l=0,r=0,currsum=0,target=total-x,len=-1;
+     while(r<n)
+     {
+         currsum+=nums[r];
+         r++;
+         while(currsum>target && l<=r)
+         {
+             currsum-=nums[l];
+             l++;
+         }
+         if(currsum==target)
+         {
+             len=max(len,r-l);
+         }
+    }
+    if(len==-1)
+      return -1;
+    else
+      return n-len;
+    }
+};
