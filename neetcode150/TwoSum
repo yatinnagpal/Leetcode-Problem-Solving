@@ -1,0 +1,16 @@
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        mpp = dict()
+        for idx, val in enumerate(nums):
+            temp = target - val
+            if temp in mpp:
+                return [mpp[temp], idx]
+            else:
+                mpp[val]=idx
+        return [-1,-1]
+        
