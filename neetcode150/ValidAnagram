@@ -14,4 +14,7 @@ class Solution(object):
         for ch in t:
             t_map[ch] = t_map.get(ch,0) + 1
         return s_map==t_map
-        
+
+#Alternative
+
+return Counter(s) == Counter(t)
