@@ -1,0 +1,37 @@
+class Solution(object):
+    def groupAnagrams(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: List[List[str]]
+        """
+        mpp = {}
+        for word in strs:
+            key = "".join(sorted(word))
+            if key in mpp:
+                mpp[key].append(word)
+            else:
+                mpp[key]=[word]
+        return list(mpp.values())
+
+
+##Optimized Version
+
+
+class Solution(object):
+    def groupAnagrams(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: List[List[str]]
+        """
+        mpp = {}
+        for word in strs:
+            count = [0]*26
+            for ch in word:
+                count[ord(ch)-ord('a')]+=1
+            key = tuple(count)
+            if key in mpp:
+                mpp[key].append(word)
+            else:
+                mpp[key] = [word]
+        return list(mpp.values())
+        
