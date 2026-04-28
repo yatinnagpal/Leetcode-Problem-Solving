@@ -8,4 +8,27 @@ class Solution:
         for i in range(k):
             res.append(sorted_items[i][0])
         return res
+
+#Alternative Approach
+
+class Solution(object):
+    def topKFrequent(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        mpp = {}
+        for val in nums:
+            mpp[val] = mpp.get(val, 0) + 1
+        freq = [[] for _ in range(len(nums)+1)]
+        for val, count in mpp.items():
+            freq[count].append(val)
+        res = []
+        for i in range(len(freq)-1, 0, -1):
+            for val in freq[i]:
+                res.append(val)
+                if len(res)==k:
+                    return res
+        
         
