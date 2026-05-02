@@ -32,3 +32,22 @@ class Solution(object):
                     return res
         
         
+#using min heap
+
+class Solution(object):
+    def topKFrequent(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        mpp = {}
+        for val in nums:
+            mpp[val] = mpp.get(val, 0) + 1
+        min_heap = []
+        for val, freq in mpp.items():
+            heapq.heappush(min_heap, (freq, val))
+            if len(min_heap)>k:
+                heapq.heappop(min_heap)
+        return [num for freq, num in min_heap]
+        
