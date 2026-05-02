@@ -9,7 +9,7 @@ class Solution:
             res.append(sorted_items[i][0])
         return res
 
-#Alternative Approach
+#using bucket sort
 
 class Solution(object):
     def topKFrequent(self, nums, k):
